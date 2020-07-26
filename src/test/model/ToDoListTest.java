@@ -38,14 +38,15 @@ public class ToDoListTest {
     public void testDeleteTaskCompleted() {
         toDoList.addTask(new Task("task1",50));
         toDoList.addTask(new Task("task2",35));
-        assertEquals(2,toDoList.getTotalTask());
-        assertEquals(2,toDoList.getUncompletedTasks());
         toDoList.completed("task2");
-        assertEquals(1,toDoList.getUncompletedTasks());
-        assertEquals(2,toDoList.getTotalTask());
         toDoList.deleteTask("task2");
         assertEquals(1,toDoList.getTotalTask());
         assertEquals(1,toDoList.getUncompletedTasks());
+        toDoList.completed("task1");
+        toDoList.deleteTask("task1");
+        assertEquals(0,toDoList.getTotalTask());
+        assertEquals(0,toDoList.getUncompletedTasks());
+
     }
 
     @Test
