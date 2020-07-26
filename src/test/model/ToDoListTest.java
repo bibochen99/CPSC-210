@@ -27,9 +27,11 @@ public class ToDoListTest {
     public void testDeleteTaskUncompleted() {
         toDoList.addTask(new Task("task1",50));
         assertEquals(1,toDoList.getTotalTask());
+        assertFalse(toDoList.isEmpty());
         toDoList.deleteTask("task1");
         assertEquals(0,toDoList.getTotalTask());
         assertEquals(0,toDoList.getUncompletedTasks());
+        assertTrue(toDoList.isEmpty());
     }
 
     @Test
@@ -72,6 +74,13 @@ public class ToDoListTest {
         assertEquals(85,toDoList.getTotalTime());
         toDoList.changeTime("task1",35);
         assertEquals(70,toDoList.getTotalTime());
+    }
+
+    @Test
+    public void testIsEmpty() {
+        assertTrue(toDoList.isEmpty());
+        toDoList.addTask(new Task("task1",50));
+        assertFalse(toDoList.isEmpty());
     }
 
     }

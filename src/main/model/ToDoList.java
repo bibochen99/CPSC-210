@@ -31,11 +31,11 @@ public class ToDoList {
 
     //REQUIRES: task in the list
     //MODIFIES: this
-    //EFFECTS: delete one task on to-do-list; if it is uncompleted, reduce the total estimated time, uncomplted task
+    //EFFECTS: delete one task on to-do-list; if it is uncompleted, reduce the total estimated time, uncompleted task
     // number minus 1, otherwise just remove it;
     public  void deleteTask(String description) {
         for (Task task:tasks) {
-            if (task.getDescription() == description) {
+            if (task.getDescription().equals(description)) {
                 if (!task.getCompleted()) {
                     totalTime -= task.getTime();
                     uncompletedTasks--;
@@ -52,7 +52,7 @@ public class ToDoList {
     //EFFECTS: mark the task completed
     public void completed(String description) {
         for (Task task : tasks) {
-            if (task.getDescription() == description) {
+            if (task.getDescription().equals(description)) {
                 task.setCompleted(true);
                 totalTime -= task.getTime();
                 uncompletedTasks--;
@@ -75,12 +75,17 @@ public class ToDoList {
     //EFFECTS: change estimated time of one task
     public void changeTime(String description, int newTime) {
         for (Task task : tasks) {
-            if (task.getDescription() == description) {
+            if (task.getDescription().equals(description)) {
                 totalTime -= task.getTime();
                 totalTime += newTime;
                 task.setTime(newTime);
             }
         }
+    }
+
+    //EFFECTS: if the to-do-list is empty, return true; otherwise return false;
+    public boolean isEmpty() {
+        return tasks.size() == 0;
     }
 
     public ArrayList<Task> getTasks() {
