@@ -40,10 +40,10 @@ public class ToDoListTest {
             toDoList.addTask(new Task("task" + i, i*10));
         }
         assertEquals(5,toDoList.getTotalTask());
-        toDoList.completed("task2");
+        toDoList.completed("task4");
         assertEquals(5,toDoList.getTotalTask());
         assertEquals(4,toDoList.getUncompletedTasks());
-        toDoList.deleteTask("task2");
+        toDoList.deleteTask("task4");
         assertEquals(4,toDoList.getTotalTask());
         assertEquals(4,toDoList.getUncompletedTasks());
         toDoList.completed("task1");
