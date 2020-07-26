@@ -25,34 +25,27 @@ public class ToDoListTest {
 
     @Test
     public void testDeleteTaskUncompleted() {
-        for (int i=0; i < 5; i++) {
-            toDoList.addTask(new Task("task" + i, i*10));
-        }
-        assertEquals(5,toDoList.getTotalTask());
-        toDoList.deleteTask("task1");
-        assertEquals(4,toDoList.getTotalTask());
-        assertEquals(4,toDoList.getUncompletedTasks());
+        toDoList.addTask(new Task("task",25));
+        toDoList.addTask(new Task("task1",35));
+        assertEquals(2,toDoList.getTotalTask());
+        toDoList.deleteTask("task");
+        assertEquals(1,toDoList.getTotalTask());
+        assertEquals(1,toDoList.getUncompletedTasks());
+        toDoList.deleteTask("task5");
+        assertEquals(1,toDoList.getTotalTask());
+        assertEquals(1,toDoList.getUncompletedTasks());
     }
 
     @Test
     public void testDeleteTaskCompleted() {
-        for (int i=0; i < 5; i++) {
-            toDoList.addTask(new Task("task" + i, i*10));
-        }
-        assertEquals(5,toDoList.getTotalTask());
-        toDoList.completed("task4");
-        assertEquals(5,toDoList.getTotalTask());
-        assertEquals(4,toDoList.getUncompletedTasks());
-        toDoList.deleteTask("task4");
-        assertEquals(4,toDoList.getTotalTask());
-        assertEquals(4,toDoList.getUncompletedTasks());
-        toDoList.completed("task1");
-        assertEquals(4,toDoList.getTotalTask());
-        assertEquals(3,toDoList.getUncompletedTasks());
-        toDoList.deleteTask("task1");
-        assertEquals(3,toDoList.getTotalTask());
-        assertEquals(3,toDoList.getUncompletedTasks());
-
+        toDoList.addTask(new Task("task",25));
+        assertEquals(1,toDoList.getTotalTask());
+        toDoList.completed("task");
+        assertEquals(1,toDoList.getTotalTask());
+        assertEquals(0,toDoList.getUncompletedTasks());
+        toDoList.deleteTask("task");
+        assertEquals(0,toDoList.getTotalTask());
+        assertEquals(0,toDoList.getUncompletedTasks());
     }
 
     @Test
