@@ -25,27 +25,33 @@ public class ToDoListTest {
 
     @Test
     public void testDeleteTaskUncompleted() {
-        toDoList.addTask(new Task("task1",50));
-        assertEquals(1,toDoList.getTotalTask());
-        assertFalse(toDoList.isEmpty());
+        for (int i=0; i < 5; i++) {
+            toDoList.addTask(new Task("task" + i, i*10));
+        }
+        assertEquals(5,toDoList.getTotalTask());
         toDoList.deleteTask("task1");
-        assertEquals(0,toDoList.getTotalTask());
-        assertEquals(0,toDoList.getUncompletedTasks());
-        assertTrue(toDoList.isEmpty());
+        assertEquals(4,toDoList.getTotalTask());
+        assertEquals(4,toDoList.getUncompletedTasks());
     }
 
     @Test
     public void testDeleteTaskCompleted() {
-        toDoList.addTask(new Task("task1",50));
-        toDoList.addTask(new Task("task2",35));
+        for (int i=0; i < 5; i++) {
+            toDoList.addTask(new Task("task" + i, i*10));
+        }
+        assertEquals(5,toDoList.getTotalTask());
         toDoList.completed("task2");
+        assertEquals(5,toDoList.getTotalTask());
+        assertEquals(4,toDoList.getUncompletedTasks());
         toDoList.deleteTask("task2");
-        assertEquals(1,toDoList.getTotalTask());
-        assertEquals(1,toDoList.getUncompletedTasks());
+        assertEquals(4,toDoList.getTotalTask());
+        assertEquals(4,toDoList.getUncompletedTasks());
         toDoList.completed("task1");
+        assertEquals(4,toDoList.getTotalTask());
+        assertEquals(3,toDoList.getUncompletedTasks());
         toDoList.deleteTask("task1");
-        assertEquals(0,toDoList.getTotalTask());
-        assertEquals(0,toDoList.getUncompletedTasks());
+        assertEquals(3,toDoList.getTotalTask());
+        assertEquals(3,toDoList.getUncompletedTasks());
 
     }
 
