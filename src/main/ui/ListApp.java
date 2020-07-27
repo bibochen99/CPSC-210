@@ -25,7 +25,6 @@ public class ListApp {
 
     //MODIFIES: this
     //EFFECTS: process user input
-    //REFERENCE: From TellerAPP
     public void runList() {
         System.out.println("Welcome to the to-do-list application: ");
         boolean isOver = false;
@@ -44,7 +43,6 @@ public class ListApp {
 
     //MODIFIES: this
     //EFFECTS: process which steps using
-    //REFERENCE: From TellerApp
     public void process(String button) {
         if (button.equals("a")) {
             processAdd();

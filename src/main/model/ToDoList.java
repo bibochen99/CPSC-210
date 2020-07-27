@@ -18,7 +18,6 @@ public class ToDoList {
         uncompletedTasks = 0;
     }
 
-    //REQUIRES: can not have duplicate task
     //MODIFIES: this
     //EFFECTS: add one task on to-do-list
     public void addTask(Task task) {
@@ -71,7 +70,7 @@ public class ToDoList {
         return "Null";
     }
 
-    //REQUIRES: isCompleted == false; and task is in the list; newTime >= 0
+    //REQUIRES: isCompleted == false; and task is in the list
     //MODIFIES: this
     //EFFECTS: change estimated time of one task
     public void changeTime(String description, int newTime) {
