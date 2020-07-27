@@ -14,7 +14,7 @@ About *ToDo* list:
 - As a user, I want to be able to mark a task as complete on my to-do list
 - As a user, I want to be able to know what is my next task on my to-do-list
 
-## If I can manage time
+## If I can manage
 *extra user stories*
 - As a user, I want to be able to reset my estimated time for a task
 - As a user, I want to be able to know how long is it expected to be completed
