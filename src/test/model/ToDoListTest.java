@@ -28,22 +28,27 @@ public class ToDoListTest {
 
     @Test
     public void testDeleteTaskCompleted() {
-        toDoList.addTask(new Task("task", 25));
-        assertEquals(1, toDoList.getTotalTask());
-        try {
-            toDoList.completed("task");
-        } catch (NotInTheListException notInTheListException) {
-            fail("Throw an unexpected exception");
-        }
-        assertEquals(1, toDoList.getTotalTask());
-        assertEquals(0, toDoList.getUncompletedTasks());
         try {
             toDoList.deleteTask("task");
         } catch (NotInTheListException notInTheListException) {
+        }
+        toDoList.addTask(new Task("task", 25));
+        toDoList.addTask(new Task("task1",25));
+        assertEquals(2, toDoList.getTotalTask());
+        try {
+            toDoList.completed("task1");
+        } catch (NotInTheListException notInTheListException) {
             fail("Throw an unexpected exception");
         }
-        assertEquals(0, toDoList.getTotalTask());
-        assertEquals(0, toDoList.getUncompletedTasks());
+        assertEquals(2, toDoList.getTotalTask());
+        assertEquals(1, toDoList.getUncompletedTasks());
+        try {
+            toDoList.deleteTask("task1");
+        } catch (NotInTheListException notInTheListException) {
+            fail("Throw an unexpected exception");
+        }
+        assertEquals(1, toDoList.getTotalTask());
+        assertEquals(1, toDoList.getUncompletedTasks());
     }
 
     @Test
@@ -72,6 +77,10 @@ public class ToDoListTest {
 
     @Test
     public void testCompleted() {
+        try {
+            toDoList.completed("task");
+        } catch (NotInTheListException notInTheListException) {
+        }
         toDoList.addTask(new Task("task", 25));
         assertFalse(toDoList.getTasks().get(0).getCompleted());
         try {
