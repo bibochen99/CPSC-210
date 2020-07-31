@@ -1,6 +1,7 @@
 package ui;
 
 
+import exception.NotInTheListException;
 import model.Task;
 import model.ToDoList;
 
@@ -36,14 +37,19 @@ public class ListApp {
                 isOver = true;
                 System.out.println("Thank you bye!");
             } else {
-                process(button);
+                try {
+                    process(button);
+                } catch (NotInTheListException notInTheListException) {
+                    System.out.println("Failure! The list does not have this task.");
+                }
+
             }
         }
     }
 
     //MODIFIES: this
     //EFFECTS: process which steps using
-    public void process(String button) {
+    public void process(String button) throws NotInTheListException {
         if (button.equals("a")) {
             processAdd();
         } else if (toDoList.isEmpty()) {
@@ -57,7 +63,6 @@ public class ListApp {
         } else {
             System.out.println("Invalid the input, please select correct one: ");
         }
-
     }
 
     //MODIFIES: this
@@ -69,13 +74,12 @@ public class ListApp {
         System.out.println("please enter the estimated time:");
         int t = input.nextInt();
         toDoList.addTask(new Task(d,t));
-        System.out.println(toDoList.getTotalTask());
         System.out.println("Successfully add one task in you list.\n Choose you next step:");
     }
 
     //MODIFIES: this
     //EFFECTS: process delete task
-    public void processDelete() {
+    public void processDelete() throws NotInTheListException {
         System.out.println("Delete one task, please enter the description of:");
         Scanner input = new Scanner(System.in);
         String d = input.next();
@@ -91,7 +95,7 @@ public class ListApp {
 
     //MODIFIES: this
     //EFFECTS: process the completed
-    public void processCompleted() {
+    public void processCompleted() throws NotInTheListException {
         System.out.println("Great! Enter your completed task:");
         Scanner input = new Scanner(System.in);
         String d = input.next();

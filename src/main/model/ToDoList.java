@@ -1,5 +1,7 @@
 package model;
 
+import exception.NotInTheListException;
+
 import java.util.ArrayList;
 
 // Represents a list of tasks in the to-do-list
@@ -33,7 +35,7 @@ public class ToDoList {
     //MODIFIES: this
     //EFFECTS: delete one task on to-do-list; if it is uncompleted, reduce the total estimated time, uncompleted task
     // number minus 1, otherwise just remove it;
-    public  void deleteTask(String description) {
+    public  void deleteTask(String description) throws NotInTheListException {
         for (Task task:tasks) {
             if (task.getDescription().equals(description)) {
                 if (!task.getCompleted()) {
@@ -43,6 +45,8 @@ public class ToDoList {
                 tasks.remove(task);
                 totalTask--;
                 break;
+            } else if (task.equals(tasks.get(tasks.size() - 1))) {
+                throw new NotInTheListException();
             }
         }
     }
@@ -50,12 +54,15 @@ public class ToDoList {
     //REQUIRES: description should in the to-do-list
     //MODIFIES: this
     //EFFECTS: mark the task completed
-    public void completed(String description) {
+    public void completed(String description) throws NotInTheListException {
         for (Task task : tasks) {
             if (task.getDescription().equals(description)) {
                 task.setCompleted(true);
                 totalTime -= task.getTime();
                 uncompletedTasks--;
+                break;
+            } else if (task.equals(tasks.get(tasks.size() - 1))) {
+                throw new NotInTheListException();
             }
         }
     }
