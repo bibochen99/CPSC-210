@@ -27,6 +27,18 @@ public class ToDoListTest {
     }
 
     @Test
+    public void testAddTaskWithComplemented() {
+        Task task = new Task("task1", 50);
+        Task task1 = new Task("task1", 50,true);
+        toDoList.addTask(task);
+        assertEquals(1,toDoList.getTotalTask());
+        assertEquals(1,toDoList.getUncompletedTasks());
+        toDoList.addTask(task1);
+        assertEquals(2,toDoList.getTotalTask());
+        assertEquals(1,toDoList.getUncompletedTasks());
+    }
+
+    @Test
     public void testDeleteTaskCompleted() {
         try {
             toDoList.deleteTask("task");
