@@ -11,10 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 //Reference: tellerApp
 public class ReaderTest {
+    private Reader reader;
     @Test
     public void readTestTaskFile1() {
         try {
-            List<Task> tasks = Reader.readTasks(new File("./data/testTaskFile1.txt"));
+            List<Task> tasks = reader.readTasks(new File("./data/testTaskFile1.txt"));
             Task task = tasks.get(0);
             assertEquals("edit",task.getDescription());
             assertEquals(35,task.getTime());
@@ -33,7 +34,7 @@ public class ReaderTest {
     @Test
     public void readTaskFile2() {
         try {
-            List<Task> tasks = Reader.readTasks(new File("./data/testTaskFile2.txt"));
+            List<Task> tasks = reader.readTasks(new File("./data/testTaskFile2.txt"));
             Task task = tasks.get(0);
             assertEquals("writeFile",task.getDescription());
             assertEquals(50,task.getTime());
@@ -51,7 +52,7 @@ public class ReaderTest {
     @Test
     public void testException() {
         try {
-            List<Task> tasks = Reader.readTasks(new File("./data/testException.txt"));
+            List<Task> tasks = reader.readTasks(new File("./data/testException.txt"));
             fail("Do not throw a expected exception");
         } catch (IOException e) {
         }
