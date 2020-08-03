@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 //Reference: tellerApp
 public class ReaderTest {
-    private Reader reader;
+    private Reader reader = new Reader();
+
     @Test
     public void readTestTaskFile1() {
         try {
