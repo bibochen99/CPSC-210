@@ -117,7 +117,6 @@ public class ListApp {
         System.out.println("Successfully mark it as completed!\nChoose your next step:");
     }
 
-    //MODIFIES: this
     //EFFECTS: process save the tasks
     private void processSave() {
         System.out.println("Do you want to save your project");
@@ -139,7 +138,6 @@ public class ListApp {
         }
     }
 
-    //REQUIRES: this
     //EFFECTS: save the tasks to the named file
     private void saveTasks(String name) {
         String fileName = "./data/" + name + ".txt";
@@ -158,6 +156,8 @@ public class ListApp {
         }
     }
 
+    //MODIFIES:this
+    //EFFECTS: Read file and add tasks to the to to-do-list
     private void processRead() {
         System.out.println("Enter your file name to read");
         Scanner input = new Scanner(System.in);
@@ -174,6 +174,7 @@ public class ListApp {
         }
     }
 
+    //EFFECTS: print all the tasks in the to-do-list
     private void processPrint() {
         if (toDoList.getTasks().size() == 0) {
             System.out.println("Null tasks");
