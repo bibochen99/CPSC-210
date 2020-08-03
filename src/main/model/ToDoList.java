@@ -26,7 +26,9 @@ public class ToDoList {
         if (!tasks.contains(task)) {
             tasks.add(task);
             totalTime += task.getTime();
-            uncompletedTasks++;
+            if (!task.getCompleted()) {
+                uncompletedTasks++;
+            }
             totalTask++;
         }
     }
