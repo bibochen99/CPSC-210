@@ -47,7 +47,7 @@ public class Task implements Saveable {
     }
 
 
-    //
+    //EFFECTS: write the task to the file
     @Override
     public void save(PrintWriter printWriter) {
         printWriter.print(description);
