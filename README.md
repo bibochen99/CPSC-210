@@ -14,7 +14,7 @@ About *ToDo* list:
 - As a user, I want to be able to mark a task as complete on my to-do list
 - As a user, I want to be able to know what is my next task on my to-do-list
 - As a user, when I select the quit option from the application menu, I want the option to save my to-do list to file. 
-- As a user, I want to be able to optionally load my to-do list from the file when the program starts
+- As a user, I want to be able to optionally load my to-do list from the file
 
 ## If I can manage time
 *extra user stories*
