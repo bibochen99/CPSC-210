@@ -36,6 +36,7 @@ public class GUI {
     }
 
 
+    //EFFECTS: set the frame
     private void initializeFields() {
         //Initialize the To-Do-List
         toDoList = new ToDoList();
@@ -53,6 +54,7 @@ public class GUI {
         setCard3();
     }
 
+    //EFFECTS: set four different menu items
     private void createMenuBar() {
         // creating menuBar and adding components
         JMenuBar mb = new JMenuBar();
@@ -73,6 +75,7 @@ public class GUI {
         frame.getContentPane().add(BorderLayout.NORTH, mb);
     }
 
+    //EFFECTS: instantiate the four different panels
     private void setPanels() {
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
@@ -89,6 +92,8 @@ public class GUI {
         cards.add(panel4,"card4");
     }
 
+    //MODIFIE: this
+    //EFFECTS: Add tasks to the to do list
     private void processAdd() {
         String description = tf1.getText();
         int time = Integer.parseInt(tf2.getText());
@@ -99,6 +104,7 @@ public class GUI {
         sound.playSound("./data/add.wav");
     }
 
+    //EFFECTS: initialize the card1 for adding panel
     private void setCard1() {
         JLabel label1 = new JLabel("Description:");
         tf1 = new JTextField(10); // accepts upto 10 characters
@@ -122,11 +128,13 @@ public class GUI {
         button1.addActionListener(e -> processShow());
     }
 
+    //EFFECTS: show the reading panel
     private void processOpen() {
         sound.playSound("./data/menuItem.wav");
         cl.show(cards,"card2");
     }
 
+    //EFFECTS: initialize the card2 for reading panel
     private void setCard2() {
         panels.get("card2").setBounds(35,25,100,50);
         JLabel label = new JLabel("Enter the file you want to use: ");
@@ -145,6 +153,8 @@ public class GUI {
         button2.addActionListener(e -> goBackToCard1());
     }
 
+    //MODIFIE: this
+    //EFFECTS: read tasks from the JTextFields, adding them to the to do list
     private void readTasks(String name) {
         panels.get("card2").add(label1);
         String fileName = "./data/" + name + ".txt";
@@ -162,11 +172,13 @@ public class GUI {
 
     }
 
+    //EFFECTS: show the saving panel
     private void processSave() {
         sound.playSound("./data/menuItem.wav");
         cl.show(cards,"card3");
     }
 
+    //EFFECTS: initialize the card3 for saving panel
     private void setCard3() {
         panels.get("card3").setBounds(35,25,100,50);
         JLabel label = new JLabel("Enter the file you want to save");
@@ -185,6 +197,7 @@ public class GUI {
         button2.addActionListener(e -> goBackToCard1());
     }
 
+    //EFFECTS: save tasks to the given file
     private void saveTasks(String name) {
         String fileName = "./data/" + name + ".txt";
         panels.get("card3").add(label2);
@@ -202,12 +215,14 @@ public class GUI {
         }
     }
 
+    //EFFECTS: show the tasks panel
     private void processShow() {
         sound.playSound("./data/menuItem.wav");
         renewTasks();
         cl.show(cards,"card4");
     }
 
+    //EFFECTS: initialize the card 4 for showing all tasks
     private void setCard4() {
         JLabel info = new JLabel("There are all of your tasks");
         panels.get("card4").add(info);
@@ -220,11 +235,13 @@ public class GUI {
         button.addActionListener(e -> goBackToCard1());
     }
 
+    //EFFECTS: renew the to-do-list
     private void renewTasks() {
         panels.get("card4").removeAll();
         setCard4();
     }
 
+    //EFFECTS: go back to the adding panel
     private void goBackToCard1() {
         sound.playSound("./data/button.wav");
         cl.show(cards,"card1");
