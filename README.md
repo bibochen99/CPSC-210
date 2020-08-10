@@ -22,9 +22,9 @@ About *ToDo* list:
 - As a user, I want to be able to know how long is it expected to be completed
 - As a user, I want to be able to know how many tasks is uncompleted now
 
-##Instructions for Grader
+## Instructions for Grader
 - You can generate the first required event by clicking the add button to add the task to the To-Do-List.
 - You can generate the second required event by choosing the "add task" menu item to add the task to the To-Do-List.
 - You can trigger my audio component by clicking the button or selecting the menu items.
-- You can save the state of my application by clicking the save the button.
-- You can reload the state of my application by clicking the choose button.
+- You can save the state of my application by choosing the save menu item and then clicking the save the button.
+- You can reload the state of my application by choosing the open menu item and then clicking the choose button.
