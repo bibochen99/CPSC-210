@@ -154,4 +154,18 @@ public class ToDoListTest {
         assertFalse(toDoList.isEmpty());
     }
 
+    @Test
+    public void testGetAllTasks() {
+        String tasksStatus = "<html>" + "Description" + "\t" + "Time" + "\t" + "Status" + "<br>";
+        tasksStatus += "task" + " ";
+        tasksStatus +=  "35" + " ";
+        tasksStatus += "uncompleted";
+        tasksStatus += "<br>";
+        tasksStatus += "</html>";
+        String tasksStatus2 = "<html>" + "Description" + "\t" + "Time" + "\t" + "Status" + "<br>" + "</html>";
+        assertEquals(tasksStatus2,toDoList.getAllTasks());
+        toDoList.addTask(new Task("task",35));
+        assertEquals(tasksStatus,toDoList.getAllTasks());
+    }
+
 }

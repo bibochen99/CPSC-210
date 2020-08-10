@@ -92,6 +92,18 @@ public class ToDoList {
         }
     }
 
+    public String getAllTasks() {
+        String tasksStatus = "<html>" + "Description" + "\t" + "Time" + "\t" + "Status" + "<br>";
+        for (Task task: tasks) {
+            tasksStatus += task.getDescription() + " ";
+            tasksStatus += task.getTime() + " ";
+            tasksStatus += task.getCompleted() ? "completed" : "uncompleted";
+            tasksStatus += "<br>";
+        }
+        tasksStatus += "</html>";
+        return tasksStatus;
+    }
+
     //EFFECTS: if the to-do-list is empty, return true; otherwise return false;
     public boolean isEmpty() {
         return tasks.size() == 0;
