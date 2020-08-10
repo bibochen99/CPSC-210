@@ -168,4 +168,16 @@ public class ToDoListTest {
         assertEquals(tasksStatus,toDoList.getAllTasks());
     }
 
+    @Test
+    public void testGetAllTasksWithCompleted() {
+        String tasksStatus = "<html>" + "Description" + "\t" + "Time" + "\t" + "Status" + "<br>";
+        tasksStatus += "task" + " ";
+        tasksStatus +=  "35" + " ";
+        tasksStatus += "completed";
+        tasksStatus += "<br>";
+        tasksStatus += "</html>";
+        toDoList.addTask(new Task("task",35,true));
+        assertEquals(tasksStatus,toDoList.getAllTasks());
+    }
+
 }
