@@ -9,6 +9,8 @@ import java.io.File;
 //Reference: https://diarium.usal.es/pmgallardo/2020/01/05/play-sound-clip-from-local-file-in-java/
 //Represents sound
 public class Sound {
+
+    //EFFECTS: play sound in the file soundName
     public void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

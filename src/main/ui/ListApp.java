@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Scanner;
 
+//Show the user interface in the console
 public class ListApp {
     private ToDoList toDoList = new ToDoList();
 
