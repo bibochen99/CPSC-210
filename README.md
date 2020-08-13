@@ -28,3 +28,6 @@ About *ToDo* list:
 - You can trigger my audio component by clicking the button or selecting the menu items.
 - You can save the state of my application by choosing the save menu item and then clicking the save the button.
 - You can reload the state of my application by choosing the open menu item and then clicking the choose button.
+
+## Phase 4: Task 2
+Robust Design: class ToDoList with the method called deleteTask and completed.
