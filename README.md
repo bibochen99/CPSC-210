@@ -31,3 +31,11 @@ About *ToDo* list:
 
 ## Phase 4: Task 2
 Robust Design: class ToDoList with the method called deleteTask and completed.
+
+## Phase4: Task 3
+- High coupling: processSave, processShow, processRead and goBackToCard1 has high same part, so I create a new method
+called process taking sound name and file name as parameter to show which sound they would show and which panels program 
+will open to reduce the duplicate.
+
+- low cohesion: for the method readTasks and saveTasks, they not only change the value of text field and add the text field
+to their panels, so I remove the addition to the setter parts to improve the cohesion.

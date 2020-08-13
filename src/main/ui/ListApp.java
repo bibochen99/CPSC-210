@@ -52,7 +52,6 @@ public class ListApp {
                 } catch (NotInTheListException notInTheListException) {
                     System.out.println("Failure! The list does not have this task.");
                 }
-
             }
         }
     }

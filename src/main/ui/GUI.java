@@ -15,18 +15,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//Create the graphical user interface
 public class GUI {
     private JFrame frame;
     private ToDoList toDoList;
     private Map<String, JPanel> panels;
     private JPanel cards;
     private CardLayout cl;
-    private JLabel allTasks = new JLabel();
-    private JLabel label1 = new JLabel();
-    private JLabel label2 = new JLabel();
+    private JLabel allTasks;
+    private JLabel label1;
+    private JLabel label2;
     private JTextField tf1;
     private JTextField tf2;
-    private Sound sound = new Sound();
+    private Sound sound;
 
 
     public GUI() {
@@ -49,6 +50,10 @@ public class GUI {
         setPanels();
         frame.add(cards);
         cl = (CardLayout)(cards.getLayout());
+        allTasks = new JLabel();
+        label1 = new JLabel();
+        label2 = new JLabel();
+        sound = new Sound();
         setCard1();
         setCard2();
         setCard3();
@@ -62,15 +67,15 @@ public class GUI {
         mb.add(m1);
         JMenuItem m11 = new JMenuItem("Open");
         JMenuItem m22 = new JMenuItem("Save as");
-        JMenuItem m33 = new JMenuItem("add task");
+        JMenuItem m33 = new JMenuItem("Add task");
         JMenuItem m44 = new JMenuItem("All tasks");
         m1.add(m11);
         m1.add(m22);
         m1.add(m33);
         m1.add(m44);
-        m11.addActionListener(e -> processOpen());
-        m22.addActionListener(e -> processSave());
-        m33.addActionListener(e -> processAdd());
+        m11.addActionListener(e -> process("./data/menuItem.wav","card2"));
+        m22.addActionListener(e -> process("./data/menuItem.wav","card3"));
+        m33.addActionListener(e -> addTask());
         m44.addActionListener(e -> processShow());
         frame.getContentPane().add(BorderLayout.NORTH, mb);
     }
@@ -92,16 +97,11 @@ public class GUI {
         cards.add(panel4,"card4");
     }
 
-    //MODIFIE: this
-    //EFFECTS: Add tasks to the to do list
-    private void processAdd() {
-        String description = tf1.getText();
-        int time = Integer.parseInt(tf2.getText());
-        Task task = new Task(description,time);
-        toDoList.addTask(task);
-        allTasks.setText(toDoList.getAllTasks());
-        panels.get("card1").add(allTasks);
-        sound.playSound("./data/add.wav");
+    //EFFECTS: soundName will show which soud file will be diplayed and the name is to show which panels will
+    // be shown to the user
+    private void process(String soundName, String name) {
+        sound.playSound(soundName);
+        cl.show(cards,name);
     }
 
     //EFFECTS: initialize the card1 for adding panel
@@ -124,15 +124,22 @@ public class GUI {
         panels.get("card1").add(tf2);
         panels.get("card1").add(button);
         panels.get("card1").add(button1);
-        button.addActionListener(e -> processAdd());
+        button.addActionListener(e -> addTask());
         button1.addActionListener(e -> processShow());
     }
 
-    //EFFECTS: show the reading panel
-    private void processOpen() {
-        sound.playSound("./data/menuItem.wav");
-        cl.show(cards,"card2");
+    //MODIFIES: this
+    //EFFECTS: Add tasks to the to do list
+    private void addTask() {
+        String description = tf1.getText();
+        int time = Integer.parseInt(tf2.getText());
+        Task task = new Task(description,time);
+        toDoList.addTask(task);
+        allTasks.setText(toDoList.getAllTasks());
+        panels.get("card1").add(allTasks);
+        sound.playSound("./data/add.wav");
     }
+
 
     //EFFECTS: initialize the card2 for reading panel
     private void setCard2() {
@@ -146,17 +153,18 @@ public class GUI {
         panels.get("card2").add(tf);
         panels.get("card2").add(button1);
         panels.get("card2").add(button2);
+        panels.get("card2").add(label1);
+
         button1.addActionListener(e -> {
             sound.playSound("./data/button.wav");
             readTasks(tf.getText());
         });
-        button2.addActionListener(e -> goBackToCard1());
+        button2.addActionListener(e -> process("./data/button.wav","card1"));
     }
 
-    //MODIFIE: this
-    //EFFECTS: read tasks from the JTextFields, adding them to the to do list
+    //MODIFIES: this
+    //EFFECTS: read tasks from the JTextFields, adding them to the to do list and change label1 to show the result
     private void readTasks(String name) {
-        panels.get("card2").add(label1);
         String fileName = "./data/" + name + ".txt";
         try {
             List<Task> tasks = Reader.readTasks(new File(fileName));
@@ -167,16 +175,11 @@ public class GUI {
             label1.setText("Successfully read the tasks");
         } catch (IOException e) {
             sound.playSound("./data/error.wav");
-            label1.setText("Unable to read tasks from" + fileName);
+            label1.setText("Unable to read tasks from " + fileName);
         }
 
     }
 
-    //EFFECTS: show the saving panel
-    private void processSave() {
-        sound.playSound("./data/menuItem.wav");
-        cl.show(cards,"card3");
-    }
 
     //EFFECTS: initialize the card3 for saving panel
     private void setCard3() {
@@ -186,21 +189,23 @@ public class GUI {
         tf1.setBounds(10,10,10,10);
         JButton button1 = new JButton("save");
         JButton button2 = new JButton("cancel");
+
         panels.get("card3").add(label);
         panels.get("card3").add(tf1);
         panels.get("card3").add(button1);
         panels.get("card3").add(button2);
+        panels.get("card3").add(label2);
+
         button1.addActionListener(e -> {
             sound.playSound("./data/button.wav");
             saveTasks(tf1.getText());
         });
-        button2.addActionListener(e -> goBackToCard1());
+        button2.addActionListener(e -> process("./data/button.wav","card1"));
     }
 
-    //EFFECTS: save tasks to the given file
+    //EFFECTS: save tasks to the given file and change label2 to show the result
     private void saveTasks(String name) {
         String fileName = "./data/" + name + ".txt";
-        panels.get("card3").add(label2);
         try {
             Writer writer = new Writer(new File(fileName));
             for (Task task:toDoList.getTasks()) {
@@ -217,9 +222,9 @@ public class GUI {
 
     //EFFECTS: show the tasks panel
     private void processShow() {
-        sound.playSound("./data/menuItem.wav");
-        renewTasks();
-        cl.show(cards,"card4");
+        process("./data/menuItem.wav","card4");
+        panels.get("card4").removeAll();
+        setCard4();
     }
 
     //EFFECTS: initialize the card 4 for showing all tasks
@@ -232,19 +237,8 @@ public class GUI {
 
         JButton button = new JButton("jump to add");
         panels.get("card4").add(button);
-        button.addActionListener(e -> goBackToCard1());
+        button.addActionListener(e -> process("./data/button.wav","card1"));
     }
 
-    //EFFECTS: renew the to-do-list
-    private void renewTasks() {
-        panels.get("card4").removeAll();
-        setCard4();
-    }
-
-    //EFFECTS: go back to the adding panel
-    private void goBackToCard1() {
-        sound.playSound("./data/button.wav");
-        cl.show(cards,"card1");
-    }
 
 }

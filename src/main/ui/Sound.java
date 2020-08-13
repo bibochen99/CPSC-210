@@ -7,7 +7,7 @@ import java.io.File;
 
 
 //Reference: https://diarium.usal.es/pmgallardo/2020/01/05/play-sound-clip-from-local-file-in-java/
-
+//Represents sound
 public class Sound {
     public void playSound(String soundName) {
         try {
